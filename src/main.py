@@ -8,8 +8,8 @@ class TB6612FNG:
         self.stby_b = Pin(stby_b, Pin.OUT)
 
         # Direction Control Pins
-        self.ain2 = Pin(ain2, Pin.OUT)
         self.ain1 = Pin(ain1, Pin.OUT)
+        self.ain2 = Pin(ain2, Pin.OUT)
         self.bin1 = Pin(bin1, Pin.OUT)
         self.bin2 = Pin(bin2, Pin.OUT)
         
@@ -55,11 +55,11 @@ class TB6612FNG:
         duty = int((abs(speed) / 100) * 65535)
         
         if speed > 0:
-            self.ain1.value(1)
-            self.ain2.value(0)
-        elif speed < 0:
             self.ain1.value(0)
             self.ain2.value(1)
+        elif speed < 0:
+            self.ain1.value(1)
+            self.ain2.value(0)
         else:
             self.ain1.value(0)
             self.ain2.value(0)  # Brake
@@ -72,15 +72,19 @@ class TB6612FNG:
         speed: Range from -100 (Full Reverse) to 100 (Full Forward).
                0 applies a short brake.
         """
+        FLIP_ORIENTATION = True  # Flip orientation of motor B to match motor A
+        if FLIP_ORIENTATION:
+            speed = -speed
         speed = max(-100, min(100, speed))
         duty = int((abs(speed) / 100) * 65535)
+
         
         if speed > 0:
-            self.bin1.value(1)
-            self.bin2.value(0)
-        elif speed < 0:
             self.bin1.value(0)
             self.bin2.value(1)
+        elif speed < 0:
+            self.bin1.value(1)
+            self.bin2.value(0)
         else:
             self.bin1.value(0)
             self.bin2.value(0)  # Brake
@@ -95,8 +99,8 @@ class TB6612FNG:
         self.motor_b(0)
 
 def test_loop(driver):
-    speedtests = [30]
-    testduration = 10
+    speedtests = [15,30,45,60,75,90,95]
+    testduration = 1
     try:
         for i in range(len(speedtests)):
             print(f"\nMoving at {speedtests[i]}%")
