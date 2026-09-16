@@ -12,3 +12,6 @@ wheels/
 # Other files
 .vscode/
 .micropico
+
+# Secrets
+config.py
