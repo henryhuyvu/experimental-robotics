@@ -1,3 +1,9 @@
+'''
+main.py is executed automatically after boot.py. 
+
+It contains the primary logic for controlling the robot's motors using the TB6612FNG motor driver.
+'''
+
 from machine import Pin, PWM
 import time
 
@@ -99,11 +105,11 @@ class TB6612FNG:
         self.motor_b(0)
 
 def test_loop(driver):
-    speedtests = [15,30,45,60,75,90,95]
+    speedtests = [15,30]
     testduration = 1
     try:
         for i in range(len(speedtests)):
-            print(f"\nMoving at {speedtests[i]}%")
+            print(f"Moving at {speedtests[i]}%")
             driver.motor_a(speedtests[i])
             driver.motor_b(speedtests[i])
             time.sleep(testduration)
@@ -116,9 +122,7 @@ def test_loop(driver):
         driver.stop()
         driver.disable('AB')
 
-
-# --- Usage Example ---
-if __name__ == "__main__":
+def main():
     driver = TB6612FNG()
 
     count = 0
@@ -135,3 +139,5 @@ if __name__ == "__main__":
         driver.stop()
         driver.disable('AB')
         print("Motors safely stopped and motor driver on STBY.")
+
+main()
