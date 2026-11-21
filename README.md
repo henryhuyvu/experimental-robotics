@@ -158,7 +158,7 @@ The following is my approach to this build. Any alternative components you may w
 
 
 ## Usage
-The Zero is the main point of control for the device. When powered on, SSH into the Zero and launch the `web_server.py` script by navigating to the directory with that file and running `python web_server.py`. This will launch a locally hosted web page at the IP address of the Zero, on port 3000.
+The Zero is the main point of control for the device. When powered on, SSH into the Zero and launch the `web_server.py` script by navigating to the directory with that file and running `python web_server.py`. This will launch a locally hosted web page at the IP address of the Zero, on port 8000.
 
 If all is working, this webpage will show a camera feed and a few on-screen buttons for controlling the motion of the device. Alternatively, use the WASD keys to move the device.
 
