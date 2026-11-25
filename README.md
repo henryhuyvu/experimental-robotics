@@ -170,7 +170,7 @@ If all is working, this webpage will show a camera feed and a few on-screen butt
 ## Roadmap
 Additional electronic components I will want to attach onto the system are:
 
-- [ ] IR LEDs
+- [ ] IR and RGB LEDs
 - [ ] Tilting servo motor(s) for the Pi Camera
 - [ ] Stereo MEMs microphones
 - [ ] Mono speakers
